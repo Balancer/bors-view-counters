@@ -12,7 +12,7 @@ class Init extends AbstractMigration
 
 			->addColumn('target_class_name', 'string')
 			->addColumn('target_id', 'integer', ['signed' => false, 'limit' => 10, 'default' => '0'])
-			->addColumn('vews_count', 'integer', ['signed' => false, 'limit' => 10, 'default' => '0'])
+			->addColumn('views_count', 'integer', ['signed' => false, 'limit' => 10, 'default' => '0'])
 
 			->addColumn('create_ts', 'timestamp', ['null' => true])
 			->addColumn('modify_ts', 'timestamp', ['null' => true, 'default' => 'CURRENT_TIMESTAMP', 'update' => 'CURRENT_TIMESTAMP'])
