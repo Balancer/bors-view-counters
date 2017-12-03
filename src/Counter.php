@@ -44,6 +44,10 @@ class Counter extends \bors_object_db
 
 	static function views($object)
 	{
+		$ch = new \bors_cache_fast();
+		if($ch->get('views_count_v2', $object->internal_uri_ascii()))
+			return $ch->last();
+
 		$id = is_null($object->id()) ? '' : $object->id();
 
 		$counter = Counter::find([
@@ -52,8 +56,8 @@ class Counter extends \bors_object_db
 		])->first();
 
 		if($counter->is_null())
-			return 0;
+			return $ch->set(0, rand(60, 900));
 
-		return $counter->views_count();
+		return $ch->set($counter->views_count(), rand(60, 900));
 	}
 }
